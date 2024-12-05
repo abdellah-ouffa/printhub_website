@@ -25,6 +25,7 @@ def contact_submit(request):
         phone = request.POST.get("phone")
         message = request.POST.get("message")
 
+        print("Form Data:", name, email, phone, message)  # Debugging print
         # Compose the email
         subject = f"New Contact Form Submission from {name}"
         message_body = f"""
@@ -50,6 +51,8 @@ def contact_submit(request):
             [recipient_email],
         )
         email_message.send(fail_silently=False)
+
+        print("Email sent!")  # Debugging print
 
         # Redirect to a thank-you page or the same form
         return HttpResponseRedirect(
