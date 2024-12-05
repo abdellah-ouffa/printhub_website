@@ -1,0 +1,97 @@
+/* General container styling */
+.contact-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px);
+    /* Adjust based on header/footer height */
+    background: #fbbf24;
+    /* Brand-yellow */
+    padding: 20px;
+}
+
+/* Contact form styling */
+.contact-form {
+    background: #ffffff;
+    /* White background for the form */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Form heading */
+.contact-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #333333;
+    /* Darker text for better contrast */
+}
+
+/* Form fields */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #555555;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333333;
+    box-sizing: border-box;
+}
+
+/* Placeholder styling */
+input::placeholder,
+textarea::placeholder {
+    color: #aaaaaa;
+    font-style: italic;
+}
+
+/* Focus styling */
+input:focus,
+textarea:focus {
+    border-color: #fbbf24;
+    /* Match branding */
+    outline: none;
+    box-shadow: 0 0 5px rgba(251, 191, 36, 0.5);
+}
+
+/* Textarea field */
+textarea {
+    resize: vertical;
+    /* Allow resizing only vertically */
+    min-height: 100px;
+}
+
+/* Submit button */
+button[type="submit"] {
+    background: #1a202c;
+    /* Brand-magenta */
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background: #cc00cc;
+    /* Slightly darker on hover */
+}

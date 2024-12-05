@@ -1,0 +1,274 @@
+.sidebar {
+    width: 16rem;
+    position: fixed;
+    /* Change from fixed to sticky */
+    top: 10rem;
+    left: 0;
+    bottom: 0;
+    padding: 1rem;
+    background-color: #FBBF24;
+    z-index: 20;
+    overflow-y: auto;
+}
+
+/* Main Content and Footer Container */
+.content-container {
+    width: 100%;
+}
+
+/* Footer */
+footer {
+    margin-left: 16rem;
+    width: 100%;
+}
+
+main {
+    margin-left: 16rem;
+    width: 100%;
+}
+
+/* Adjust layout for larger screens */
+@media (min-width: 1024px) {
+    .content-container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+    }
+
+    main {
+        margin-left: auto;
+        margin-right: auto;
+        width: auto;
+        max-width: 100%;
+    }
+
+    footer {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+}
+
+/* Footer Styling - Input and Button */
+footer form .flex {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+footer form .flex input[type="email"] {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-radius: 9999px;
+    background-color: #fff;
+    border: none;
+    color: #000;
+}
+
+footer form .flex button {
+    padding: 1rem 1.5rem;
+    background-color: #FBBF24;
+    border-radius: 9999px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+footer form .flex button:hover {
+    background-color: #e6a700;
+}
+
+footer form .flex .label-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}
+
+footer form .flex .label-container input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 0.5rem;
+}
+
+/* Responsive Flexbox for Input and Button */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container input {
+    flex: 1;
+    /* Makes input field take the remaining space */
+    min-width: 0;
+    /* Ensure the input doesn't overflow */
+    padding: 0.5rem;
+}
+
+.form-container button {
+    flex-shrink: 0;
+    /* Keep button size proportional */
+    background-color: #FBBF24;
+    padding: 0.5rem 1rem;
+}
+
+/* Align the input and button in a single line for larger screens */
+@media (min-width: 768px) {
+    footer form .flex {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    footer form .flex input[type="email"] {
+        width: 75%;
+    }
+
+    footer form .flex button {
+        width: 25%;
+    }
+}
+
+/* Social Media Icons */
+footer .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+footer .social-icons a {
+    font-size: 1.875rem;
+    color: #FBBF24;
+}
+
+/* Hero Content */
+.hero-content {
+    margin-top: 10rem;
+}
+
+/* Swiper Adjustments */
+.swiper-container {
+    margin-top: 10rem;
+    position: relative;
+    z-index: 0;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #f0f0f0;
+    z-index: 0;
+}
+
+/* Custom Carousel Styles */
+/* Make the buttons slightly larger and add hover effects */
+.swiper-button-next,
+.swiper-button-prev {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.swiper-button-next svg,
+.swiper-button-prev svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Pagination bullets */
+.swiper-pagination-bullet {
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 10px;
+    height: 10px;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #3490dc;
+}
+
+/* Adjust height */
+.swiper-container {
+    height: 400px;
+}
+
+.swiper-slide img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.navbar {
+    z-index: 99;
+    /* Ensure the navbar always stays on top */
+}
+
+header {
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* other styles */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .content-container {
+        margin-left: 0;
+    }
+
+    main {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    footer {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .hero-content {
+        margin-top: 6rem;
+    }
+
+    .swiper-container {
+        margin-top: 2rem;
+    }
+
+    .swiper-container {
+        height: 200px;
+    }
+}
+
+/* Footer Input and Button for Smaller Screens */
+@media (max-width: 1024px) {
+    footer form .w-full {
+        margin-bottom: 1rem;
+        /* Ensure the elements stack on top of each other properly */
+    }
+
+    footer form input,
+    footer form button {
+        width: 100%;
+    }
+}

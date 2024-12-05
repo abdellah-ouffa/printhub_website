@@ -1,0 +1,771 @@
+/* Custom CSS for navbar, sidebar, and responsiveness across browsers */
+
+/* General Styling */
+html,
+body {
+    /* position: relative; */
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+}
+
+/* Header and navbar positioning */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 120px;
+    /* Set fixed height for navbar */
+    background-color: #222222;
+    /* Dark background for navbar */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    /* Shadow effect */
+}
+
+header img {
+    height: 60px;
+    /* Adjust logo height */
+}
+
+header .nav-links {
+    display: flex;
+    gap: 20px;
+    /* Spacing between navbar items */
+}
+
+header .nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+header .nav-links a:hover {
+    color: #f5b700;
+    /* Hover effect */
+}
+
+/* Sidebar fix for positioning */
+.sidebar {
+    position: fixed;
+    top: 130px;
+    /* Align below the navbar */
+    left: 0;
+    width: 250px;
+    /* background-color: #f5b700; */
+    /* Sidebar yellow */
+    /* color: white; */
+    /* padding: 20px; */
+    height: calc(100vh - 130px);
+    /* Full height minus navbar */
+    z-index: 50;
+    overflow-y: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    /* Shadow effect */
+    border-radius: 0 20px 20px 0;
+    /* Add rounding on the right side */
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    /* color: white; */
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar a:hover {
+    /* background-color: #262424; */
+    /* Slight hover color */
+}
+
+/* Round the header of the side bar menu */
+.custom-rounded {
+    border-radius: 0 10px 10px 0;
+}
+
+/* Collapsible sidebar */
+.accordion .hidden {
+    display: none;
+}
+
+.accordion li>a {
+    position: relative;
+}
+
+.accordion li>a::after {
+    content: '+';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.accordion li.active>a::after {
+    content: '-';
+}
+
+/* Fix for main content layout */
+.block_container {
+    margin-left: 270px;
+    /* Account for the sidebar */
+    padding-top: 120px;
+    /* Prevent overlap with navbar */
+    min-height: calc(100vh - 120px);
+    background-color: #ffffff;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+/* Sidebar toggle for desktop */
+@media screen and (min-width: 768px) {
+
+
+    .sidebar {
+        transition: width 0.2s ease-in-out;
+    }
+
+    /* .sidebar.collapsed {
+        width: 64px;
+    } */
+
+    .sidebar.collapsed {
+        width: 0;
+        visibility: hidden;
+        transition: width 0.3s ease;
+    }
+
+    .sidebar.collapsed .nav-text {
+        display: none;
+    }
+
+    .sidebar.collapsed .accordion li>a::after {
+        display: none;
+    }
+
+    .block_container {
+        transition: margin-left 0.2s ease-in-out;
+    }
+
+    /* .sidebar.collapsed+.block_container {
+        margin-left: 64px;
+    } */
+
+    .sidebar.collapsed+.block_container {
+        margin-left: 0;
+        /* Adjust when sidebar is collapsed */
+    }
+
+}
+
+/* Carousel Section */
+.swiper-container {
+    margin-top: 40px;
+    /* Adjust the margin-top for better spacing */
+    height: auto;
+}
+
+.swiper-slide img {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+}
+
+/* Service section cards */
+.grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media screen and (min-width: 768px) {
+    .grid-cols-1 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        /* Ensures a 3-column layout on medium screens */
+    }
+}
+
+/* test */
+
+@media screen and (min-width: 611px) {
+    footer .container>div:first-child>div:first-child {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    footer .container>div:first-child>div:first-child>h3,
+    footer .container>div:first-child>div:first-child>form,
+    footer .container>div:first-child>div:first-child>p,
+    footer .container>div:first-child>div:first-child>label {
+        width: 100%;
+        max-width: 500px;
+        /* Adjust as needed */
+    }
+
+    footer .container>div:first-child>div:first-child>p {
+        margin-bottom: 15px;
+    }
+
+    footer .container>div:first-child>div:first-child>label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    footer .container>div:first-child>div:first-child>label input[type="checkbox"] {
+        margin-right: 8px;
+    }
+
+    footer .container>div:first-child>div:first-child>label span {
+        margin-left: 0;
+        /* Remove the left margin */
+    }
+}
+
+/* End test */
+/* added this to fix the dropdown menu issues for desktop also */
+@media screen and (min-width: 768px) {
+
+    /* Fix for dropdown menus on mobile */
+    .relative.group {
+        position: static;
+        /* Changes positioning context */
+    }
+
+    .relative.group .hidden.group-hover\:block {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 40%;
+        max-width: none;
+        margin: 0 auto;
+        z-index: 999;
+        /* Ensures dropdown appears above other content */
+        /* background: #fbbf24; */
+        /* background: linear-gradient(135deg, #ff00ff 0%, #fbbf24 40%, #fbbf24 60%, #ff00ff 100%); */
+        background: #a9a9a9;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        border-radius: 0.5rem;
+        padding: 0.5rem 0;
+    }
+}
+
+/* End the code snippet for desktop dorp down menu issues */
+
+/* Footer fixes */
+footer {
+    clear: both;
+    padding-top: 40px;
+    background-color: #222222;
+    color: white;
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* General text and layout adjustments */
+.text-brand-white {
+    color: #ffffff !important;
+}
+
+.text-brand-yellow {
+    color: #f5b700 !important;
+}
+
+.bg-brand-black {
+    background-color: #222222 !important;
+}
+
+.bg-brand-white {
+    background-color: #ffffff !important;
+}
+
+/* Sidebar transition for smooth appearance */
+.sidebar {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Utility classes for padding, margins, and responsive design */
+.mt-40 {
+    margin-top: 40px !important;
+}
+
+.pt-4 {
+    padding-top: 4px !important;
+}
+
+/* Adjusting Swiper arrows for better positioning */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #f5b700;
+    transition: opacity 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    opacity: 0.7;
+}
+
+/* Updated Form layout fixes */
+footer form .flex {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    /* Adjust as needed */
+    margin: 0 auto;
+}
+
+footer form input[type="email"] {
+    width: 100%;
+    padding: 12px 100px 12px 20px;
+    /* Right padding to accommodate button */
+    border-radius: 9999px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+
+footer form button[type="submit"] {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: auto;
+    /* Allow button to size based on content */
+    padding: 0 20px;
+    border-radius: 0 9999px 9999px 0;
+    background-color: #f5b700;
+    color: black;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+footer form button[type="submit"]:hover {
+    background-color: #dcae00;
+}
+
+/* Mobile and responsive adjustments */
+@media screen and (max-width: 768px) {
+
+    /* for whatsApp Button on Mobile */
+    .fixed.bottom-4.right-4 {
+        padding: 12px;
+        /* Reduced padding */
+        font-size: 24px;
+        /* Adjust icon size */
+    }
+
+    .fixed.bottom-4.right-4 img {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* end code for whatsApp Button on Mobile */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 250px;
+        height: 100%;
+        /* padding: 10px; */
+        transition: left 0.3s ease-in-out;
+        z-index: 1000;
+        /* background-color: #f5b700; */
+        /* Adjust as needed */
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    /* Hide sidebar hamburger icon on mobile */
+    #sidebarToggle {
+        display: none;
+        /* Hide the sidebar toggle button on mobile */
+    }
+
+
+    .block_container {
+        margin-left: 0;
+        /* padding: 20px; */
+    }
+
+    /* Here where I made the change to make the nav smaller for mobile */
+    header {
+        height: 100px;
+    }
+
+    header img {
+        /* height: 20px; */
+        /* Smaller logo */
+        padding: 15px;
+    }
+
+    header .nav-links a {
+        font-size: 10px;
+        /* Smaller nav text */
+    }
+
+    header {
+        padding: 10px;
+        /* Adjust padding for smaller screens */
+    }
+
+    /* Here is the end of change to make the nav smaller for mobile */
+
+    header .nav-links {
+        display: none;
+        /* Hide navbar links on smaller screens */
+    }
+
+    /* Here where I made the last change for the footer */
+    footer {
+        /* padding: 20px; */
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+    }
+
+    /* Here is the end of  last change for the footer */
+    footer .container {
+        flex-direction: column;
+    }
+
+    footer .footer-col-2-3,
+    footer .footer-col-1-3 {
+        width: 100%;
+    }
+
+    footer .flex.justify-between {
+        flex-direction: column;
+    }
+
+    footer .footer-col-1-3.flex.flex-col.items-center.justify-center {
+        margin-top: 20px;
+    }
+
+    footer .flex.justify-center.space-x-6 {
+        margin-top: 10px;
+    }
+
+    /* Updated form layout for mobile */
+    footer form .flex {
+        position: relative;
+        display: flex;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    /* testtttttt */
+    .bg-white.py-2.shadow-md {
+        margin-top: 120px;
+        /* Adds space below the navbar on mobile */
+    }
+
+    /* drrrrr */
+    /* Fix for dropdown menus on mobile */
+    .relative.group {
+        position: static;
+        /* Changes positioning context */
+    }
+
+    .relative.group .hidden.group-hover\:block {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 60%;
+        max-width: none;
+        margin: 0 auto;
+        z-index: 999;
+        /* Ensures dropdown appears above other content */
+        /* background: #fbbf24; */
+        /* background: linear-gradient(135deg, #ff00ff 0%, #fbbf24 40%, #fbbf24 60%, #ff00ff 100%); */
+        background: #a9a9a9;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        border-radius: 0.5rem;
+        padding: 0.5rem 0;
+    }
+
+    /* drrrrrrrrrrrrrrrrrrrrr */
+
+    /* endstessss */
+    footer form input[type="email"] {
+        width: 100%;
+        padding: 12px 100px 12px 20px;
+        /* Adjusted right padding */
+        border-radius: 9999px;
+        border: none;
+        outline: none;
+        font-size: 0.8rem;
+        /* Slightly smaller font size */
+        height: 48px;
+    }
+
+    footer form button[type="submit"] {
+        position: absolute;
+        right: 4px;
+        top: 4px;
+        bottom: 4px;
+        width: auto;
+        min-width: 90px;
+        /* Shorter button width */
+        max-width: 90px;
+        /* Ensure button doesn't grow too wide */
+        padding: 0 10px;
+        border-radius: 9999px;
+        background-color: #f5b700;
+        color: black;
+        font-weight: bold;
+        font-size: 0.85rem;
+        /* Smaller font size for button */
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    footer form button[type="submit"]:hover {
+        background-color: #dcae00;
+    }
+}
+
+/* Ensure sidebar is visible on larger screens */
+@media screen and (min-width: 769px) {
+    .sidebar {
+        position: fixed;
+        left: 0;
+        width: 250px;
+        height: calc(100vh - 130px);
+        top: 130px;
+        /* padding: 20px; */
+        overflow-y: auto;
+        /* background-color: #f5b700; */
+        z-index: 50;
+        border-radius: 0 20px 20px 0;
+    }
+}
+
+/* part2 */
+.lazy-image {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.lazy-image.loaded {
+    opacity: 1;
+}
+
+/*  adds hover effects for the dropdown menu items */
+.relative.group .hidden.group-hover\:block a {
+    transition: all 0.2s ease;
+}
+
+.relative.group .hidden.group-hover\:block a:hover {
+    /* background-color: #222222; */
+    /* background: linear-gradient(135deg, #ff00ff 0%, #fbbf24 50%, #ff00ff 100%); */
+    background: #a9a9a9;
+    color: white;
+    font-weight: bold;
+}
+
+/* Add a "POP-OUT" effect for images when hovering */
+/* Image hover effect with yellow glow */
+/* Multi-colored brand hover effect */
+.grid-cols-1 img {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+}
+
+.grid-cols-1 img:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.2),
+        5px 5px 15px rgba(245, 183, 0, 0.4),
+        /* Yellow glow */
+        -5px -5px 15px rgba(236, 0, 140, 0.4),
+        /* Magenta glow */
+        5px -5px 15px rgba(0, 174, 239, 0.4);
+    /* Blue glow */
+}
+
+/* Create multi-colored outline effect */
+.grid-cols-1 img:hover {
+    outline: none;
+    border-image: linear-gradient(45deg,
+            #f5b700,
+            /* Yellow */
+            #ec008c,
+            /* Magenta */
+            #00aeef,
+            /* Blue */
+            #f5b700
+            /* Back to yellow to complete the circle */
+        ) 1;
+    border-width: 3px;
+    border-style: solid;
+}
+
+/* Animated version - adds movement to the colors */
+.grid-cols-1 img:hover {
+    animation: borderRotate 4s linear infinite;
+}
+
+@keyframes borderRotate {
+    from {
+        border-image: linear-gradient(0deg,
+                #f5b700,
+                #ec008c,
+                #00aeef,
+                #f5b700) 1;
+    }
+
+    to {
+        border-image: linear-gradient(360deg,
+                #f5b700,
+                #ec008c,
+                #00aeef,
+                #f5b700) 1;
+    }
+}
+
+/* Make sure the container doesn't clip the effect */
+.grid-cols-1 .overflow-hidden {
+    overflow: visible;
+}
+
+/* Touch device support */
+@media (hover: none) {
+    .grid-cols-1 img:active {
+        transform: scale(1.05) translateY(-5px);
+        box-shadow:
+            0 10px 20px rgba(0, 0, 0, 0.2),
+            5px 5px 15px rgba(245, 183, 0, 0.4),
+            -5px -5px 15px rgba(236, 0, 140, 0.4),
+            5px -5px 15px rgba(0, 174, 239, 0.4);
+        animation: borderRotate 4s linear infinite;
+    }
+}
+
+/* END */
+
+/* Hamburger Menu Desktop Style */
+@media screen and (min-width: 768px) {
+    #sidebarToggle {
+        background-color: #222222 !important;
+        color: #f5b700;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+    }
+
+    #sidebarToggle:hover {
+        background-color: #333333 !important;
+    }
+}
+
+/* END */
+
+/* Scroll Popup Styles */
+#scroll-popup {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#scroll-popup:not(.hidden) {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Optional: Add a nice box shadow */
+#scroll-popup .bg-white {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Ensure popup is above other elements */
+#scroll-popup {
+    z-index: 9999;
+}
+
+/* Smooth transition for close button hover */
+#close-popup {
+    transition: all 0.2s ease;
+}
+
+#close-popup:hover {
+    transform: scale(1.1);
+}
+
+/* END */
+
+/* Avis Clients Sticky Tab  */
+
+/* END  Avis Clients Sticky Tab*/
+
+/* Back to top button */
+#back-to-top {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Optional: Add smooth scrolling to the entire page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    #back-to-top {
+        bottom: 20px !important;
+        /* Override the Tailwind bottom-4 */
+        left: 20px !important;
+        /* Override the Tailwind left-4 */
+        padding: 10px !important;
+        /* Slightly larger touch target */
+        /* Adding !important to override Tailwind utility classes */
+    }
+
+    #back-to-top i {
+        font-size: 18px !important;
+        /* Slightly larger icon for better visibility */
+    }
+}
+
+/* Back to top button */
+
+/* Ending part2 */
+
+/* Custom spacing for accordion items */
+.accordion li {
+    margin-bottom: 2px;
+    /* Adjust this value for precise spacing (7px ~ 1.75rem) */
+}

@@ -1,0 +1,607 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PrintHub{% endblock %}</title>
+
+    <!-- Link to Favicon files -->
+    <link rel="icon" href="{% static 'core/images/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'core/images/favicon-16x16.png' %}" sizes="16x16">
+    <link rel="icon" href="{% static 'core/images/favicon-32x32.png' %}" sizes="32x32">
+    <link rel="icon" href="{% static 'core/images/favicon-96x96.png' %}" sizes="96x96"> <!-- Used 96x96 here -->
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="{% static 'core/images/apple-touch-icon.png' %}">
+
+    <!-- Web App Manifest for PWA -->
+    <link rel="manifest" href="{% static 'core/images/site.webmanifest' %}">
+     <!-- <link rel="stylesheet" href="css/custom.css?v=1.1"> -->
+
+        <link rel="stylesheet" href="{% static 'css/output.css' %}">
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+        <!-- <link rel="stylesheet" href="{% static 'css/custom.css' %}?v={{ STATIC_VERSION }}"> -->
+        <!-- <link rel="stylesheet" href="{% static 'css/custom_first.css' %}"> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <!-- Font Awesome for the arrow icon -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        {% block extra_css %}{% endblock %}
+</head>
+
+<body class="flex flex-col min-h-screen bg-brand-white">
+    <header class="bg-brand-black text-brand-white shadow-md fixed top-0 left-0 right-0 w-full z-99 ">
+        <button id="sidebarToggle" class="p-2 bg-gold text-white rounded-full mb-4 focus:outline-none hidden md:block">
+            ☰
+        </button>
+        <nav class="container mx-auto px-4 py-6 flex justify-between items-center z-99">
+
+            <div class="flex items-center">
+                
+                <a href="{% url 'home' %}"> <!-- Replace 'home' with the name of your homepage view -->
+                    <img src="{% static 'core/images/original_logo.png' %}" alt="PrintHub Logo" class="h-40 w-auto">
+                </a>
+            </div>
+            <div class="hidden md:flex items-center space-x-6 text-sm">
+                <a href="tel:+8180-2373-6156" class="text-brand-yellow"><i class="fas fa-phone text-2xl"></i></a>
+                <a href="mailto:devis.printhub@gmail.com" class="text-brand-yellow"><i
+                        class="fas fa-envelope text-2xl"></i></a>
+                <a href="https://www.facebook.com" class="text-brand-yellow"><i
+                        class="fab fa-facebook-f text-2xl"></i></a>
+                <a href="https://www.instagram.com" class="text-brand-yellow"><i
+                        class="fab fa-instagram text-2xl"></i></a>
+                <a href="https://www.youtube.com" class="text-brand-yellow"><i class="fab fa-youtube text-2xl"></i></a>
+            </div>
+            <button id="menu-toggle" class="text-brand-yellow focus:outline-none md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+        </nav>
+    </header>
+    <!-- New section -->
+
+    <!-- <div class="flex flex-col md:flex-row flex-grow mt-40"> -->
+    <div>
+
+        <aside id="sidebar"
+            class="sidebar md:sticky md:top-40 md:left-0 md:bottom-0 md:overflow-y-auto md:flex-shrink-0 md:z-20 bg-brand-white text-white md:transition-all md:duration-200 md:ease-in-out">
+
+            <!-- Sidebar Header Section -->
+            <!-- <div class="w-full bg-blanc-casse text-charcoal p-4 rounded-lg"> -->
+            <!-- Toggle button for collapsing sidebar on desktop -->
+            <!-- ################################## -->
+            <!-- <button id="sidebarToggle"
+                class="p-2 bg-gold text-white rounded-full mb-4 focus:outline-none hidden md:block">
+                ☰
+            </button> -->
+            <!-- ################################################################### -->
+            <!-- <div class="flex justify-between items-center">
+                    <button class="bg-brand-primary-dark text-white font-bold px-4 py-2 rounded-lg">Mon compte</button>
+                </div> -->
+            <!-- </div> -->
+            <!-- End of Sidebar Header Section -->
+
+            <!-- Navigation Section -->
+            <nav>
+                <ul class="accordion">
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-4 bg-brand-black hover:bg-gold rounded-lg text-brand-white font-bold"
+                            data-toggle="collapse" data-target="#subsection1">
+                            <span class="nav-text">Enseigne Lumineuse</span>
+                        </a>
+                        <ul id="subsection1" class="hidden w-full">
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    1</a></li>
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    2</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-4 bg-brand-black hover:bg-brand-yellow rounded-lg text-brand-white font-bold"
+                            data-toggle="collapse" data-target="#subsection2">
+                            <span class="nav-text">Panneaux Publicitaires</span>
+                        </a>
+                        <ul id="subsection2" class="hidden w-full">
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    1</a></li>
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    2</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-4 bg-brand-black hover:bg-brand-yellow rounded-lg text-brand-white font-bold"
+                            data-toggle="collapse" data-target="#subsection3">
+                            <span class="nav-text">Habillage Des Façades</span>
+                        </a>
+                        <ul id="subsection3" class="hidden w-full">
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    1</a></li>
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    2</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-4 bg-brand-black hover:bg-brand-yellow rounded-lg text-brand-white font-bold"
+                            data-toggle="collapse" data-target="#subsection4">
+                            <span class="nav-text">Habillage De Véhicule</span>
+                        </a>
+                        <ul id="subsection4" class="hidden w-full">
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    1</a></li>
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    2</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-4 bg-brand-black hover:bg-brand-yellow rounded-lg text-brand-white font-bold"
+                            data-toggle="collapse" data-target="#subsection5">
+                            <span class="nav-text">Totem Publicitaire</span>
+                        </a>
+                        <ul id="subsection5" class="hidden w-full">
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    1</a></li>
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    2</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-4 bg-brand-black hover:bg-brand-yellow rounded-lg text-brand-white font-bold"
+                            data-toggle="collapse" data-target="#subsection6">
+                            <span class="nav-text">Habillage Vitrine</span>
+                        </a>
+                        <ul id="subsection6" class="hidden w-full">
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    1</a></li>
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    2</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-4 bg-brand-black hover:bg-brand-yellow rounded-lg text-brand-white font-bold"
+                            data-toggle="collapse" data-target="#subsection7">
+                            <span class="nav-text">Impression Carte Visite, Brochure</span>
+                        </a>
+                        <ul id="subsection7" class="hidden w-full">
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    1</a></li>
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    2</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-4 bg-brand-black hover:bg-brand-yellow rounded-lg text-brand-white font-bold"
+                            data-toggle="collapse" data-target="#subsection8">
+                            <span class="nav-text">Palissade De Chantier</span>
+                        </a>
+                        <ul id="subsection8" class="hidden w-full">
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    1</a></li>
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    2</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-4 bg-brand-black hover:bg-brand-yellow rounded-lg text-brand-white font-bold"
+                            data-toggle="collapse" data-target="#subsection9">
+                            <span class="nav-text">Croix Pharmacie Led</span>
+                        </a>
+                        <ul id="subsection9" class="hidden w-full">
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    1</a></li>
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    2</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-4 bg-brand-black hover:bg-brand-yellow rounded-lg text-brand-white font-bold" data-toggle="collapse" data-target="#subsection10">
+                            <span class="nav-text">Brochures</span>
+                        </a>
+                        <ul id="subsection10" class="hidden w-full">
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    1</a></li>
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    2</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-4 bg-brand-black hover:bg-brand-yellow rounded-lg text-brand-white font-bold" data-toggle="collapse" data-target="#subsection11">
+                            <span class="nav-text">Packaging</span>
+                        </a>
+                        <ul id="subsection11" class="hidden w-full">
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    1</a></li>
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    2</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-4 bg-brand-black hover:bg-brand-yellow rounded-lg text-brand-white font-bold" data-toggle="collapse" data-target="#subsection12">
+                            <span class="nav-text">Contact / Devis</span>
+                        </a>
+                        <ul id="subsection12" class="hidden w-full">
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    1</a></li>
+                            <li><a href="#"
+                                    class="block w-full py-2 px-4 shadow-lg mt-1 mb-1 bg-mid-light-gray hover:bg-mid-gray hover:text-brand-white hover:font-bold rounded-lg text-brand-white font-semibold">Subsection
+                                    2</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+
+        <!-- <div class="flex-grow md:ml-64 w-full"> -->
+        <div class="block_container">
+            <main class="px-4 py-8 md:px-8 md:py-10 bg-brand-white">
+                <div class="bg-white py-2 shadow-md">
+                    <div class="container mx-auto px-4 flex flex-wrap items-center justify-between gap-4">
+                        <div class="relative flex-grow max-w-3xl">
+                            <input type="text" placeholder="Recherchez vos produits"
+                                class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:border-brand-yellow">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <a href="https://wa.me/+818023736156"
+                                class="flex items-center px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 transition duration-300">
+                                <i class="ffab fa-whatsapp text-lg mr-2"></i> WhatsApp
+                            </a>
+                            <div class="relative group">
+                                <button
+                                    class="flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition duration-300">
+                                    <i class="fas fa-phone mr-2"></i> Service client <i
+                                        class="fas fa-chevron-down ml-2"></i>
+                                </button>
+                                <div
+                                    class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden group-hover:block">
+                                    <a href="tel:0522680785"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">0522 680 785</a>
+                                    <a href="tel:0522680795"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">0522 680 795</a>
+                                    <a href="tel:0522680793"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">0522 680 793</a>
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <button
+                                    class="flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition duration-300">
+                                    <i class="fas fa-file-alt mr-2"></i> Devis sur mesure <i
+                                        class="fas fa-chevron-down ml-2"></i>
+                                </button>
+                                <div
+                                    class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden group-hover:block">
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Option
+                                        1</a>
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Option
+                                        2</a>
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Option
+                                        3</a>
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <button
+                                    class="flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition duration-300">
+                                    <i class="fas fa-question-circle mr-2"></i> Aide <i
+                                        class="fas fa-chevron-down ml-2"></i>
+                                </button>
+                                <div
+                                    class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden group-hover:block">
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">FAQ</a>
+                                    <a href="#"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Support</a>
+                                    <a href="{% url 'contact' %}"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Contact</a>
+                                </div>
+                            </div>
+                            <a href="#"
+                                class="flex items-center px-4 py-2 bg-brand-yellow text-white rounded-full hover:bg-yellow-600 transition duration-300">
+                                <i class="fas fa-shopping-cart mr-2"></i> <span
+                                    class="bg-red-500 text-white rounded-full px-2 py-1 text-xs">0</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% block content %}{% endblock %}
+            </main>
+
+            <footer class="bg-brand-black text-brand-white py-12 mt-4 rounded-t-lg w-full">
+                <div class="container mx-auto px-4">
+                    <div class="flex justify-between items-center mb-12">
+                        <div class="w-2/3">
+                            <h3 class="text-2xl font-bold mb-6">INSCRIVEZ-VOUS ICI</h3>
+                            <form class="w-full max-w-2xl mb-6">
+                                <div class="flex">
+                                    <input type="email" placeholder="Entrez votre E-mail"
+                                        class="w-3/4 py-4 px-6 rounded-l-full text-brand-black text-lg">
+                                    <button type="submit"
+                                        class="w-1/4 bg-brand-yellow text-brand-black py-4 px-6 rounded-r-full font-bold text-lg hover:bg-opacity-80 transition duration-300">S'abonner</button>
+                                </div>
+                            </form>
+                            <p class="text-sm mb-4">Inscrivez-vous pour recevoir nos offres promotionnelles.</p>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="form-checkbox">
+                                <span class="ml-2 text-sm">J'accepte les conditions d'utilisation</span>
+                            </label>
+                        </div>
+                        <div class="w-1/3 flex flex-col items-center justify-center">
+                            <h3 class="text-2xl font-bold mb-4">NOUS SUIVRE</h3>
+                            <div class="flex justify-center space-x-6">
+                                <a href="#" class="text-3xl hover:text-brand-yellow"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="text-3xl hover:text-brand-yellow"><i
+                                        class="fab fa-instagram"></i></a>
+                                <a href="#" class="text-3xl hover:text-brand-yellow"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-8 border-t border-gray-700 pt-8">
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">INFO. & COMMANDES</h3>
+                            <ul class="space-y-2">
+                                <li><a href="tel:0522680785" class="hover:text-brand-yellow">0522 680 785</a></li>
+                                <li><a href="tel:0522680795" class="hover:text-brand-yellow">0522 680 795</a></li>
+                                <li><a href="tel:0522680793" class="hover:text-brand-yellow">0522 680 793</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">COORDONNÉES</h3>
+                            <p>Adresse imprimerie</p>
+                            <p>66, Baname La Gracieuse,</p>
+                            <p>Zone Industrielle Sidi Bernoussi</p>
+                            <p>Casablanca - Maroc</p>
+                            <p class="mt-2">Email: <a href="mailto:contact@24hprint.ma"
+                                    class="hover:text-brand-yellow">contact@24hprint.ma</a></p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">INFORMATIONS</h3>
+                            <ul class="space-y-2">
+                                <li><a href="#" class="hover:text-brand-yellow">Paiement Direct</a></li>
+                                <li><a href="#" class="hover:text-brand-yellow">Formulaire de satisfaction</a></li>
+                                <li><a href="#" class="hover:text-brand-yellow">Avis Clients</a></li>
+                                <li><a href="#" class="hover:text-brand-yellow">Devenir Revendeur</a></li>
+                                <li><a href="#" class="hover:text-brand-yellow">Réclamation</a></li>
+                                <li><a href="#" class="hover:text-brand-yellow">Parc Machine</a></li>
+                                <li><a href="#" class="hover:text-brand-yellow">Blog</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">SHOWROOM</h3>
+                            <p>Casablanca</p>
+                            <p>66, Baname La Gracieuse,</p>
+                            <p>Zone Industrielle Sidi Bernoussi</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">AIDE</h3>
+                            <ul class="space-y-2">
+                                <li><a href="#" class="hover:text-brand-yellow">Comment commander en ligne ?</a>
+                                </li>
+                                <li><a href="#" class="hover:text-brand-yellow">Guide Xérox iridesse</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                        <p>Copyright © 2024 24hprinthub.ma. Tous droits réservés.</p>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/+818023736156"
+        class="fixed bottom-4 right-4 bg-green-500 text-white rounded-full p-6 shadow-lg hover:bg-green-600 transition duration-300">
+        <img src="{% static 'core/images/new-whatsapp-logo.png' %}" alt="WhatsApp" class="w-8 h-8">
+    </a>
+
+    <!-- Avis Clients Button -->
+    <div id="reviewsSystem" class="relative">
+        <!-- Button -->
+        <div class="fixed top-1/2 transform -translate-y-1/2" style="right: -22px;">
+            <button id="feedbackToggle"
+                class="bg-pink-500 text-white p-1.5 md:p-2 px-3 md:px-4 rounded-full shadow-lg transform -rotate-90 text-sm md:text-base">
+                ★ Avis Clients
+            </button>
+        </div>
+
+        <!-- Panel -->
+        <div id="feedbackPanel" class="fixed top-0 right-0 h-screen w-full md:w-[500px] bg-white shadow-lg transform translate-x-full 
+            transition-transform duration-1000 ease-[cubic-bezier(0.4, 0, 0.2, 1)] overflow-y-auto z-[2000]">
+            <!-- Header with rating -->
+            <div class="p-4 md:p-6">
+                <div class="flex justify-between items-center mb-2">
+                    <h2 class="text-lg md:text-xl">Avis Clients</h2>
+                    <button id="closeFeedback" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="text-sm text-gray-500 mb-4">Trusted reviews by <span
+                        class="text-blue-600 font-bold">yotpo.</span></div>
+
+                <div class="mb-6">
+                    <div class="text-4xl md:text-5xl text-pink-500 font-bold">4.9</div>
+                    <div class="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4 mt-1">
+                        <div class="text-yellow-400 text-lg md:text-xl">★★★★★</div>
+                        <div class="text-gray-500 text-sm md:text-base">Based on 243 reviews</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-between items-center border-b pb-4 gap-4 md:gap-0">
+                    <div class="flex gap-4">
+                        <button class="text-gray-700 border-b-2 border-gray-700 text-sm md:text-base">Site
+                            Reviews</button>
+                        <button class="text-gray-400 text-sm md:text-base">Product Reviews</button>
+                    </div>
+                    <button class="bg-pink-500 text-white px-4 md:px-6 py-2 rounded-full w-full md:w-auto">Write A
+                        Review</button>
+                </div>
+            </div>
+
+            <!-- Reviews list -->
+            <div class="px-4 md:px-6 space-y-6">
+                <!-- Review item -->
+                <div class="border rounded-lg p-3 md:p-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-8 md:w-10 h-8 md:h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-gray-400"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold flex flex-wrap items-center gap-2">
+                                    AMINE B.
+                                    <span class="text-pink-500 text-xs md:text-sm">Verified Reviewer</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-xs md:text-sm text-gray-500">31/10/24</div>
+                    </div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <div class="text-yellow-400 text-sm md:text-base">★★★★★</div>
+                        <span class="text-gray-700 text-sm md:text-base">Leader</span>
+                    </div>
+                    <p class="text-gray-600 text-sm md:text-base">Printhub sont les meilleurs dans son domaine comme
+                        toujours</p>
+                    <div class="mt-4 text-xs md:text-sm text-gray-500 flex flex-wrap items-center gap-2">
+                        Was this review helpful?
+                        <button class="flex items-center gap-1">
+                            <i class="far fa-thumbs-up"></i> 0
+                        </button>
+                        <button class="flex items-center gap-1">
+                            <i class="far fa-thumbs-down"></i> 0
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Add more review items with the same structure -->
+            </div>
+        </div>
+
+        <!-- Backdrop -->
+        <div id="feedbackBackdrop"
+            class="fixed inset-0 bg-black bg-opacity-30 opacity-0 pointer-events-none transition-opacity duration-300 z-[1999]">
+        </div>
+    </div>
+
+    <!-- Feedback Button and Panel -->
+
+    <!-- Back to Top Button -->
+    <a href="#" id="back-to-top"
+        class="fixed bottom-4 left-4 bg-yellow-500 text-white rounded-full p-3 shadow-lg hover:bg-yellow-600 transition duration-300"
+        style="display: none;">
+        <i class="fas fa-arrow-up text-lg"></i>
+    </a>
+
+    <!-- Back to Top Button -->
+
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <!-- <script src="{% static 'js/placeholderUpdater.js' %}"></script> -->
+    <!-- <script src="{% static 'js/trackWindowSize.js' %}"></script> -->
+
+    {% block extra_js %}{% endblock %}
+
+    <!-- Scroll Popup HTML -->
+    <div id="scroll-popup"
+        class="fixed bottom-1/4 left-4 transform -translate-x-full opacity-0 transition-all duration-300 ease-in-out z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl max-w-sm relative">
+            <!-- Close button -->
+            <button id="close-popup"
+                class="absolute -top-2 -right-2 bg-white rounded-full p-1 shadow-md text-gray-500 hover:text-gray-700">
+                <span class="text-xl font-bold">×</span>
+            </button>
+
+            <!-- Popup content -->
+            <div class="p-4">
+                <h2 class="text-lg font-bold mb-3">Profitez de nos services dédiés aux entreprises</h2>
+
+                <div class="flex flex-col">
+                    <!-- Text and business person image -->
+                    <div class="flex items-center space-x-3">
+                        <div class="flex-1">
+                            <p class="font-semibold text-sm mb-2">Un chargé de compte dédié pour votre entreprise</p>
+                        </div>
+                        <div class="relative">
+                            <!-- Decorative elements -->
+                            <div class="absolute -top-2 -right-2">
+                                <span class="block w-2 h-2 bg-pink-500"></span>
+                                <span class="block w-2 h-2 bg-yellow-400 -translate-y-1 translate-x-1"></span>
+                                <span class="block w-2 h-2 bg-blue-400 translate-y-1 -translate-x-1"></span>
+                            </div>
+                            <div class="w-28 h-28 bg-gradient-to-r from-yellow-400 to-pink-500">
+                                <img src="{% static 'core/images/carousel-6.jpeg' %}" alt="Account Manager"
+                                    class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Button -->
+                    <a href="#"
+                        class="mt-3 bg-yellow-400 text-black font-bold px-4 py-2 rounded-full hover:bg-yellow-500 transition-colors duration-300 text-center text-sm">
+                        CONTACTEZ-NOUS →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of scroll popup html snippet code -->
+
+    <!-- Replace your existing Avis Clients Sticky Tab with this -->
+    <!-- Avis Clients Sticky Tab -->
+
+
+    <!-- End of Avis Clients Sticky Tab -->
+
+</body>
+
+
+</html>

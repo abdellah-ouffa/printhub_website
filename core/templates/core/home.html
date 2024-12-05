@@ -1,0 +1,132 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Accueil - PrintHub{% endblock %}
+
+{% block extra_css %}
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<!-- <link rel="stylesheet" href="{% static 'css/carousel.css' %}"> -->
+{% endblock %}
+
+{% block content %}
+
+<div class="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 relative">
+    <div class="hero-content mt-40">
+        <h1 class="text-2xl md:text-4xl font-extrabold text-gray-900 mb-4 text-center">PANNEAU MARRAKECH SPÉCIALISTE
+            EN
+            ENSEIGNE</h1>
+        <p class="text-base md:text-xl text-gray-700 mb-6 leading-relaxed text-center">
+            LUMINEUSE PUBLICITAIRE, TOTEM PUBLICITAIRE, PALISSADE DE CHANTIER, SIGNALETIQUE, ET HABILLAGE DES
+            FAÇADES
+            ALUCOBOND AU MAROC
+        </p>
+    </div>
+
+    <!-- Carousel Section -->
+    <div class="mt-12 relative overflow-hidden rounded-lg shadow-lg z-0 mt-40">
+        <div class="swiper-container mt-6 relative">
+            <div class="swiper-wrapper">
+                <!-- Carousel Images -->
+                <div class="swiper-slide">
+                    <img src="{% static 'core/images/carousel-1.jpeg' %}" alt="Carousel Image 1"
+                        class="w-full h-48 md:h-80 object-cover">
+                </div>
+                <div class="swiper-slide">
+                    <img src="{% static 'core/images/carousel-2.jpeg' %}" alt="Carousel Image 2"
+                        class="w-full h-48 md:h-80 object-cover">
+                </div>
+                <div class="swiper-slide">
+                    <img src="{% static 'core/images/carousel-3.jpeg' %}" alt="Carousel Image 3"
+                        class="w-full h-48 md:h-80 object-cover">
+                </div>
+                <div class="swiper-slide">
+                    <img src="{% static 'core/images/carousel-4.jpeg' %}" alt="Carousel Image 4"
+                        class="w-full h-48 md:h-80 object-cover">
+                </div>
+                <div class="swiper-slide">
+                    <img src="{% static 'core/images/carousel-5.jpeg' %}" alt="Carousel Image 5"
+                        class="w-full h-48 md:h-80 object-cover">
+                </div>
+                <div class="swiper-slide">
+                    <img src="{% static 'core/images/carousel-6.jpeg' %}" alt="Carousel Image 6"
+                        class="w-full h-48 md:h-80 object-cover">
+                </div>
+            </div>
+
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <h2 class="text-2xl font-bold mb-6 text-center">Nos Services</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {% for service in services %}
+        <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full">
+            {% if service.image %}
+            <img src="{{ service.image.url }}" alt="{{ service.title }}" class="w-full h-48 object-cover">
+            {% else %}
+            <div class="w-full h-48 bg-gray-200 flex items-center justify-center">
+                <span class="text-gray-500">No image available</span>
+            </div>
+            {% endif %}
+            <div class="p-4 flex flex-col flex-grow">
+                <h3 class="text-lg font-bold mb-2">{{ service.title }}</h3>
+                <p class="text-gray-700 mb-4 flex-grow text-sm">{{ service.description|truncatewords:15 }}</p>
+                <a href="{% url 'service_list' %}"
+                    class="mt-auto inline-block bg-brand-yellow text-black font-bold py-2 px-4 rounded hover:bg-yellow-400 transition duration-300 text-center text-sm">En
+                    savoir plus</a>
+            </div>
+        </div>
+        {% empty %}
+        <p class="col-span-3 text-center text-gray-500">Aucun service disponible pour le moment.</p>
+        {% endfor %}
+    </div>
+
+    <div class="text-center mt-6">
+        <a href="{% url 'service_list' %}"
+            class="inline-block bg-brand-yellow text-black font-bold py-2 px-4 rounded hover:bg-yellow-400 transition duration-300">Voir
+            tous nos services</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    // Initialize Swiper
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+            delay: 5000, // 5 seconds delay
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            768: {
+                slidesPerView: 1,
+                spaceBetween: 30,
+            },
+            1024: {
+                slidesPerView: 1,
+                spaceBetween: 40,
+            },
+        },
+    });
+</script>
+{% endblock %}
