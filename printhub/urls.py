@@ -17,6 +17,11 @@ urlpatterns = [
     ),
 ]
 
+if settings.DEBUG:
+    urlpatterns += [
+        path("__debug__/", include("debug_toolbar.urls")),
+    ]
+
 
 # This only in development
 # In production ,Django does not serve media files directly because it is inefficient and not secure

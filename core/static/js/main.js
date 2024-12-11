@@ -6,6 +6,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const mainContent = document.querySelector('main');
     const footer = document.querySelector('footer');
     const sidebarItems = document.querySelectorAll('.accordion li > a');
+    // Add this variable to select the close button element
+    const sidebarClose = document.getElementById('sidebarClose');
+    console.log(sidebarClose); // Logs the button element
+    console.log(getComputedStyle(sidebarClose).display); // Logs the computed display property
+    console.log(getComputedStyle(sidebarClose).visibility); // Logs the computed visibility property
+    console.log(getComputedStyle(sidebarClose).zIndex); // Logs the computed z-index
+
     // console.log(sidebarItems)
 
     function updateSidebarVisibility() {
@@ -28,6 +35,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Close sidebar when the close button is clicked on mobile
+    sidebarClose.addEventListener('click', function () {
+        sidebar.classList.remove('open');
+        sidebar.classList.add('hidden');
+    });
+
     // Toggle sidebar collapsibility on desktop
     sidebarToggle.addEventListener('click', function () {
         if (window.innerWidth >= 768) {
@@ -35,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Close sidebar when clicking outside on mobile
+    // Close sidebar when clicking outside on mobile or when the close button is clicked
     mainContent.addEventListener('click', function () {
         if (window.innerWidth < 768 && sidebar.classList.contains('open')) {
             sidebar.classList.add('hidden');

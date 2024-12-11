@@ -13,7 +13,7 @@ Contact Us - PrintHub
 <div class="contact-form-container">
     <div class="contact-form">
         <h2>Contact Us</h2>
-        <form action="{% url 'contact_submit' %}" method="POST">
+        <form id="contact-form" method="POST">
             {% csrf_token %}
             <div class="form-group">
                 <label for="name">Your Name</label>
@@ -33,6 +33,11 @@ Contact Us - PrintHub
             </div>
             <button type="submit" class="submit-btn">Submit</button>
         </form>
+        <div id="response-message"></div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/contact.js' %}"></script>
 {% endblock %}

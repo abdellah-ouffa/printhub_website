@@ -69,6 +69,10 @@
 
         <aside id="sidebar"
             class="sidebar md:sticky md:top-40 md:left-0 md:bottom-0 md:overflow-y-auto md:flex-shrink-0 md:z-20 bg-brand-white text-white md:transition-all md:duration-200 md:ease-in-out">
+              <!-- Add the close button -->
+            <button id="sidebarClose" class="absolute top-4 right-4 text-white text-2xl md:hidden">
+                &times;
+            </button>
 
             <!-- Sidebar Header Section -->
             <!-- <div class="w-full bg-blanc-casse text-charcoal p-4 rounded-lg"> -->
@@ -545,6 +549,8 @@
 
 
     <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- <script src="{% static 'js/placeholderUpdater.js' %}"></script> -->
     <!-- <script src="{% static 'js/trackWindowSize.js' %}"></script> -->
 

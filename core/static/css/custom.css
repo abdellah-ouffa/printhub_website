@@ -102,12 +102,14 @@ header .nav-links a:hover {
 
 .accordion li>a {
     position: relative;
+    padding-left: 2.5rem;
+    /* Add space for the + symbol */
 }
 
 .accordion li>a::after {
     content: '+';
     position: absolute;
-    right: 1rem;
+    left: 1rem;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -378,7 +380,9 @@ footer form button[type="submit"]:hover {
         position: fixed;
         top: 0;
         left: -100%;
-        width: 250px;
+        width: 100%;
+        /* Change width to 100% */
+        /* width: 250px; */
         height: 100%;
         /* padding: 10px; */
         transition: left 0.3s ease-in-out;
@@ -391,6 +395,29 @@ footer form button[type="submit"]:hover {
         left: 0;
     }
 
+    /* Add styles for the close button */
+    #sidebarClose {
+        display: block;
+        position: absolute;
+        font-size: 28px;
+        /* Slightly larger size */
+        font-weight: bold;
+        /* Makes the "×" bold */
+        top: 10px;
+        right: 10px;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 9999;
+    }
+
+    /* Hide the close button on larger screens */
+    @media screen and (min-width: 769px) {
+        #sidebarClose {
+            display: none;
+        }
+    }
+
     /* Hide sidebar hamburger icon on mobile */
     #sidebarToggle {
         display: none;
@@ -401,6 +428,11 @@ footer form button[type="submit"]:hover {
     .block_container {
         margin-left: 0;
         /* padding: 20px; */
+    }
+
+    .sidebar.open+.block_container {
+        margin-left: 100%;
+        /* Move the main content off-screen when sidebar is open */
     }
 
     /* Here where I made the change to make the nav smaller for mobile */
@@ -768,4 +800,10 @@ html {
 .accordion li {
     margin-bottom: 2px;
     /* Adjust this value for precise spacing (7px ~ 1.75rem) */
+}
+
+
+/* THIS IS FOR AJAX CALL RESPONSE */
+#message {
+    margin-top: 20px;
 }
