@@ -27,8 +27,6 @@ __pycache__/
 *.pyo
 
 # Ignore Django secret keys and settings
-printhub/settings.py
-.env
 
 # Ignore compiled CSS files (Tailwind and others)
 **/*.css.map
